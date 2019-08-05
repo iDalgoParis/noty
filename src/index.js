@@ -4,8 +4,8 @@ import 'noty.scss'
 import Promise from 'es6-promise'
 import * as Utils from 'utils'
 import * as API from 'api'
-import { NotyButton } from 'button'
-import { Push } from 'push'
+import {NotyButton} from 'button'
+import {Push} from 'push'
 
 export default class Noty {
   /**
@@ -23,6 +23,7 @@ export default class Noty {
     this.closeTimer = -1
     this.barDom = null
     this.layoutDom = null
+    this.resetTimerOnHover = this.options.resetTimerOnHover || true
     this.progressDom = null
     this.showing = false
     this.shown = false
@@ -359,7 +360,10 @@ export default class Noty {
 
     this.closing = true
 
-    if (this.options.animation.close === null || this.options.animation.close === false) {
+    if (
+      this.options.animation.close === null ||
+      this.options.animation.close === false
+    ) {
       this.promises.close = new Promise(resolve => {
         resolve()
       })
